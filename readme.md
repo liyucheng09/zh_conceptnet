@@ -47,3 +47,24 @@
 - COMMONSENSEQA: A Question Answering Challenge Targeting Commonsense Knowledge
   - CommensenseQA，根据conceptnet构建的常识问答数据库，选择题的形式。可以帮助理解他人眼中的常识是什么样子的.
 - `CommensenseQA`数据集：百度网盘
+- 百度，清华提出的基于知识图谱增强的BERT：https://zhuanlan.zhihu.com/p/75466388
+- CommonGen: A Constrained Text Generation Challenge for Generative Commonsense Reasoning
+  - 需要常识知识的生成任务
+- 微软probase概念图谱：https://concept.research.microsoft.com/Home/Introduction
+- OMCS：OMCS是conceptnet的数据来源，换句话说，conceptnet是从OMCS数据中解析得来的。
+  - http://courses.csail.mit.edu/6.803/pdf/openmind.pdf
+  - **TODO** 看论文，明确两个问题：
+    - OMCS的标注流程是什么。（是否有输入，输出是什么）
+    - 具体来说，如何从OMCS的预料中抽取出conceptnet的结构的（正则？还是信息抽取技术？）。
+
+
+## OMCS
+
+OMCS的格式如下：
+
+```
+安全帽 可以用  塑膠 製成。
+安全帽 可以用  絨布 製成。
+你會  吃藥 因為你  生病了。
+太潮濕 會讓你想要  不舒服 。
+```
