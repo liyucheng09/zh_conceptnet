@@ -13,12 +13,7 @@
 
 # TODO LIST
 
-1. 阅读conceptnet2.0《ConceptNet — a practical commonsense
-reasoning tool-kit》
-  - 论文地址：http://alumni.media.mit.edu/~hugo/publications/papers/BTTJ-ConceptNet.pdf
-  - project地址：http://alumni.media.mit.edu/~hugo/conceptnet/
-
-2. 处理omcs，得到模版
+1. 处理omcs，得到模版
 
 
 # 讨论区
@@ -72,6 +67,30 @@ reasoning tool-kit》
 5. 标注者和算法共同消岐
 6. 人工标注，判断omcs的质量
 
+## 01/17
+
+### ConceptNet 2.0
+
+conceptnet2.0《ConceptNet — a practical commonsense reasoning tool-kit》
+
+1. 和WordNet、Cyc的区别：
+   1. WordNet致力于词汇分级、单词相似度的判定；节点是一个单词或短语，由自然语言表示；易使用
+   2. Cyc致力于正式的逻辑推理；节点用特定的逻辑描述来表示，有自己的CycL语言；不易使用
+   3. ConceptNet致力于在文本中能够做出实际的、基于上下文的推理；节点是复合型概念，自然语言表示；易使用
+2. 构建ConceptNet 
+   1. 采用约50条抽取规则将OMCS半结构的句子转换成二元关系断言
+      1. 用20种关系（**TODO**除了ThematicKLine关系和SuperThematicKLine关系？），采用正则表达式将句子变成断言
+      2. 没有合适的对应关系的句子用“ConceptuallyRelatedTo”kline关系表示；
+      3. 节点是复合型的，由动词、名词短语、介词短语和形容词短语构成。
+   2. Normalisation阶段
+      1. 修改错误拼写、节点符合句法约束、去掉停用词、is/are/were→be、复数变单数…
+3. Relaxation阶段
+   1. 去重；
+   2. 用启发性找出更一般的断言（如果children nodes都有那么parent node也有）；不建议使用
+   3. 构造SuperThematicKLine关系，使更具体的关系转为更泛华的，这样有助于构建节点的连接。；
+   4. 如果节点的名词短语中有形容词短语修饰，这个特性也可以上升到父节点；
+   5. 解决Vocabulary differences（如bike/bicycle）和Morphological variations（如relax/relaxation）
+
 
 ### 计划
 
@@ -105,6 +124,9 @@ reasoning tool-kit》
   - **TODO** 看论文，明确两个问题：
     - OMCS的标注流程是什么。（是否有输入，输出是什么）
     - 具体来说，如何从OMCS的预料中抽取出conceptnet的结构的（正则？还是信息抽取技术？）。
+- Conceptnet2.0：http://alumni.media.mit.edu/~hugo/publications/papers/BTTJ-ConceptNet.pdf
+  - project地址：http://alumni.media.mit.edu/~hugo/conceptnet/
+  - python包：https://pypi.org/project/ConceptNet/
 
 
 ## OMCS
