@@ -13,7 +13,11 @@
 
 # TODO LIST
 
-1. 阅读conceptnet5.5
+1. 阅读conceptnet2.0《ConceptNet — a practical commonsense
+reasoning tool-kit》
+  - 论文地址：http://alumni.media.mit.edu/~hugo/publications/papers/BTTJ-ConceptNet.pdf
+  - project地址：http://alumni.media.mit.edu/~hugo/conceptnet/
+
 2. 处理omcs，得到模版
 
 
