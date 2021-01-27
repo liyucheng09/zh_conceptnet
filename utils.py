@@ -16,8 +16,40 @@ def get_zh_edges(source_csv, target_csv):
                 if is_zh_edge(slots): f2.write(line)
                 line=f.readline()
 
-def get_dataframe(csv_file):
-    return pd.read_csv(csv_file, sep='\t', names=['url', 'rel', 'start', 'end', 'edge_info'])
+
+def normalize_dataframe(one_line):
+    """
+
+    对conceptnet进行归一化。
+
+    使用方法：
+    将conceptnet的csv文件转地方成dataframe对象；然后
+    df=df.apply(normalize_dataframe, axis=1)
+
+    """
+    url, rel, start, end, edge_info = one_line
+    start=start.strip('/c/zh/')
+    end=end.strip('/c/zh/')
+    rel=rel.strip('/r/')
+    
+    start=start if '/' not in start else start.split('/')[0]
+    url=rel+','+start+','+end
+
+    if rel=='Synonym' and start==end:
+        return pd.Series({'url': pd.NA, 'start':pd.NA, 'rel':pd.NA, 'end':pd.NA})
+
+    return pd.Series({'url': url, 'start':start, 'rel':rel, 'end':end})
+
+
+def get_all_nodes(df: pd.DataFrame):
+    """
+
+    df: 已经归一化后的conceptnet的dataframe对象
+    返回conceptnet的所有节点
+
+    """
+    nodes=pd.concat([df['start'], df['end']])
+    return nodes.drop_duplicates()
 
 
 if __name__=='__main__':
