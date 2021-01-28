@@ -51,8 +51,31 @@ def get_all_nodes(df: pd.DataFrame):
     nodes=pd.concat([df['start'], df['end']])
     return nodes.drop_duplicates()
 
+def simplify_omcs(omcs_csv_file_path):
+    """
+    简体化omcs数据库。
+    输入是omcs_csv文件的路径
+    返回汉化后的omcs dataframe
+    """
+    converter=opencc.OpenCC('tw2sp')
+    def process_one_line(line):
+        text=line['text']
+        creator_id=line['creator_id']
+        activity_id=line['activity_id']
+
+        text=converter.convert(text)
+
+        return pd.Series({
+            'text':text,
+            'creator_id':creator_id,
+            'activity_id':activity_id
+        })
+    df=pd.read_csv(omcs_csv_file_path, index_col=0)
+    return df.apply(process_one_line, axis=1)
+
 
 if __name__=='__main__':
-    get_dataframe('zh_conceptnet.csv')
+    df=simplify_omcs('zh_omcs.csv')
+    df.to_csv('simplified_omcs.csv')
 
     
