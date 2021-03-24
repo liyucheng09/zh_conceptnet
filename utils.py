@@ -1,4 +1,4 @@
-import opencc
+#import opencc
 import pandas as pd
 
 def get_zh_edges(source_csv, target_csv):
@@ -74,8 +74,63 @@ def simplify_omcs(omcs_csv_file_path):
     return df.apply(process_one_line, axis=1)
 
 
-if __name__=='__main__':
-    df=simplify_omcs('zh_omcs.csv')
-    df.to_csv('simplified_omcs.csv')
+def get_template_from_omcs(simplified_omcs_csv_path):
+    """
+    从omcs中获取模板
+    输入是汉化后的simplified_omcs.csv文件的路径
+    返回抽出的模板+没法抽模板的句子 template_sentence_csv
+    """
+    template_log_id = []
+    template_temp = []
+    template = []
+    nodes = []
 
+    df=pd.read_csv(zh_omcs_csv_path)
+    text = df[['id','text']].values.tolist()
+    #print(text)
+    for id,value in text:
+        b = ''
+        c = ''
+        #print(value)
+        if value[0]==' ':
+            a = value[0:value.find(' ',2)]
+            value = value.replace(value[0:value.find(' ',2)+1], '_')  # "_可以用  叶子 制成。"
+        temp = value[value.find('  '):]  #"  叶子 制成。"
+        #if temp=='。':
+            #num+=1
+            #print({id:temp})
+        if temp!='。':   #193649条
+            b = temp[:temp.find(' ',3)]  #"  叶子"
+            value = value.replace(b, '_')
+            temp2 = value[value.find('  '):]
+            if temp2!='。':
+                c = temp2[:temp2.find(' ',3)] 
+                value = value.replace(c, '_')
+            nodes.append({id : [a , b , c]})
+        template_log_id.append({id : value})
+        template_temp.append(value)
+    df_template = pd.DataFrame(template_temp, columns=['template']) 
+    return df_template.drop_duplicates()
+    
+def get_template_from_template_sentence(template_sentence_csv_path):
+    df=pd.read_csv(template_sentence_csv_path)
+    template = df[['template']].values.tolist()[:35]
+    sentences = df[['template']].values.tolist()[35:]
+    print(sentences)
+    # template = df
+
+def get_en_omcs(simplified_omcs_file_path):
+    df=pd.read_csv(simplified_omcs_file_path,sep='\t',error_bad_lines=False)
+    df = df[df['language_id']=='en']
+    a = 1
+    for id, sub_df in df.groupby('activity_id'):
+        print(id,len(sub_df.index))
+        #sub_df.to_csv(str(id)+'.csv')
+    
+
+
+
+if __name__=='__main__':
+    df= get_template_from_template_sentence('../../Data/template_from_omcs.csv')
+    #df.to_csv('en_omcs.csv')
     
