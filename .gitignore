@@ -36,3 +36,4 @@ models/model_save/*
 *.pnxg
 baselines/
 .vscode/
+!datasets/csqa_new/*.pickle
