@@ -1,0 +1,21 @@
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 80 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 81 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 82 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 83 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 84 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 85 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 86 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 87 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 88 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 89 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 90 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 91 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 92 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 93 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 94 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 95 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 96 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 97 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 98 &
+CUDA_VISIBLE_DEVICES=NONE python grounding_concepts.py ../datasets/csqa_new/train_rand_split.jsonl.statements 99 &
+wait
