@@ -7,3 +7,25 @@
 ## 下一步
 
 看看怎么生成路径对应的自然语言。
+
+# 备忘录
+
+Query: c1, c2, c3
+Answer: c4,  c5
+
+C1->c4, c2->c4, ...c1->c5, ...
+
+- [x] Grounding: space.matcher
+- [x] Pruning: 剪枝
+- [x] Path-finding: networkx
+- [x] Path-scoring: transE.
+    - [ ] How, where, what, who
+    - [ ] Relation type
+- [x] Path-pruning
+
+- [ ] Path 2 text: c1->c4,
+    - [ ] Template
+
+- [ ] Model
+    - [ ] BERT
+    - [ ] T5
