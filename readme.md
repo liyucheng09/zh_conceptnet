@@ -11,3 +11,26 @@
 ## 关于转换question to statement
 
 `datasets/convert_caqa.py`中的 `replace_wh_word_with_blank` 函数中包含了大部分规则。
+
+
+# 备忘录
+
+Query: c1, c2, c3
+Answer: c4,  c5
+
+C1->c4, c2->c4, ...c1->c5, ...
+
+- [x] Grounding: space.matcher
+- [x] Pruning: 剪枝
+- [x] Path-finding: networkx
+- [x] Path-scoring: transE.
+    - [ ] How, where, what, who
+    - [ ] Relation type
+- [x] Path-pruning
+
+- [ ] Path 2 text: c1->c4,
+    - [ ] Template
+
+- [ ] Model
+    - [ ] BERT
+    - [ ] T5
