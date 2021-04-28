@@ -7,3 +7,7 @@
 ## 下一步
 
 看看怎么生成路径对应的自然语言。
+
+## 关于转换question to statement
+
+`datasets/convert_caqa.py`中的 `replace_wh_word_with_blank` 函数中包含了大部分规则。
