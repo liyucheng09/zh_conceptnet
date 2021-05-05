@@ -6,8 +6,15 @@ import pandas as pd
 
 filepath='/Users/mac/Desktop/ConceptNet/Data/CommonsenseQA/'
 
-appid = '20210426000802170'
-appkey = 'o4ewlTPleD8MqNooMG4t'
+# 标准版翻译，打开time.sleep()一行，随便跑
+appid = '20210429000807616'
+appkey = 'ycRDNKgTtcNp8TiCMEin'
+
+
+# 高级版翻译，不需要time.sleep()，不超量情况下可以用
+# appid = '20210426000802170'
+# appkey = 'o4ewlTPleD8MqNooMG4t' 
+
 from_lang = 'en'
 to_lang =  'zh'
 
@@ -23,8 +30,6 @@ def load_data(type):
     dataset = pd.read_json(data_path, orient="records", lines=True)
     question = dataset["question"].values
     for index,i in enumerate(question):
-        # res = make_request(i['question_concept'])
-        # res = json.loads(res)
         data = []
         data.append(i['question_concept'])
         for j in i['choices']:
@@ -32,7 +37,6 @@ def load_data(type):
         data.append(i['stem'])
         query = "\n".join(data)
         res = make_request(query)
-        # print(res['trans_result'][0]['dst'])
         res = json.loads(res)
         temp = []
         for dst in res['trans_result']:
@@ -68,7 +72,8 @@ def load_data(type):
 
         dataset['question'][index] = question_zh
 
-    dataset.to_json(output_path, orient="records", lines=True, force_ascii=False)
+        if index % 10 == 0:
+            dataset.to_json(output_path, orient="records", lines=True, force_ascii=False)
     
     # return data
 
