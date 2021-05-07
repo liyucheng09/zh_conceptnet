@@ -146,6 +146,8 @@ def process(filename, batch_id=-1):
     nlp = spacy.load('en_core_web_sm', disable=['ner', 'parser', 'textcat'])
     nlp.add_pipe('sentencizer')
 
+    matcher = load_matcher(nlp)
+
     sents = []
     answers = []
     with open(filename, 'r') as f:
@@ -171,7 +173,7 @@ def process(filename, batch_id=-1):
         batch_sents = sents
         batch_answers = answers
 
-    res = match_mentioned_concepts(nlp, sents=batch_sents, answers=batch_answers, batch_id=batch_id)
+    res = match_mentioned_concepts(nlp, sents=batch_sents, answers=batch_answers, matcher=matcher, batch_id=batch_id)
     with open(output_path, 'w') as fo:
         json.dump(res, fo)
 
