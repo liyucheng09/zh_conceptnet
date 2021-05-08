@@ -3,8 +3,9 @@ import random
 import json
 from hashlib import md5
 import pandas as pd
+from tqdm import tqdm
 
-filepath='/Users/mac/Desktop/ConceptNet/Data/CommonsenseQA/'
+filepath='datasets/csqa_new/'
 
 appid = '20210426000802170'
 appkey = 'o4ewlTPleD8MqNooMG4t'
@@ -22,7 +23,7 @@ def load_data(type):
     
     dataset = pd.read_json(data_path, orient="records", lines=True)
     question = dataset["question"].values
-    for index,i in enumerate(question):
+    for index,i in enumerate(tqdm(question)):
         # res = make_request(i['question_concept'])
         # res = json.loads(res)
         data = []
@@ -64,7 +65,7 @@ def load_data(type):
 
         question_zh['choice'] = temp_list
         question_zh['stem'] = temp[6]
-        print(question_zh)
+        # print(question_zh)
 
         dataset['question'][index] = question_zh
 
